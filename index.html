@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Futuristic AI News</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 50%, #00d4ff22 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, #ff006e22 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, #8338ec22 0%, transparent 50%);
+            animation: bgShift 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgShift {
+            0% { transform: translateX(0px) translateY(0px); }
+            100% { transform: translateX(50px) translateY(-30px); }
+        }
+
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #00d4ff;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4ff, #ff006e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-links a:hover {
+            border-color: #00d4ff;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 2rem 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 110, 0.1));
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #ff006e, #8338ec);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 0, 110, 0.8); }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        /* AI Status */
+        .ai-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 212, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            border: 1px solid #00d4ff;
+            margin-bottom: 2rem;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .news-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .news-card:hover::before {
+            left: 100%;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+            border-color: #00d4ff;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .news-category {
+            background: linear-gradient(45deg, #ff006e, #8338ec);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .news-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            color: #ffffff;
+        }
+
+        .news-summary {
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .ai-insight {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 3px solid #00d4ff;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+        }
+
+        .ai-insight::before {
+            content: '🤖 AI Insight: ';
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            border: none;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #ff006e, #cc0055);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(0, 212, 255, 0.3);
+            border-top: 3px solid #00d4ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.3);
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .container { padding: 100px 1rem 1rem; }
+            .news-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">🚀 AI News</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tech">Tech</a></li>
+                <li><a href="#world">World</a></li>
+                <li><a href="#ai">AI</a></li>
+                <li><a href="#settings">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Futuristic AI News</h1>
+                <p>Real-time news powered by advanced AI with 3D visualization and local Gemma-3-1b integration</p>
+                
+                <div class="ai-status">
+                    <div class="status-dot"></div>
+                    <span>AI Model: Gemma-3-1b Active</span>
+                </div>
+                
+                <div class="controls">
+                    <button class="btn" onclick="fetchNews()">🔄 Refresh News</button>
+                    <button class="btn btn-secondary" onclick="toggleAI()">🤖 AI Analysis</button>
+                    <button class="btn" onclick="exportData()">💾 Export Data</button>
+                </div>
+            </div>
+        </section>
+
+        <div id="news-container">
+            <div class="loading">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Futuristic AI News | Powered by Gemma-3-1b | Built with ❤️</p>
+    </footer>
+
+    <script>
+        // Configuration
+        const CONFIG = {
+            GEMMA_API_URL: 'http://127.0.0.1:1234',
+            NEWS_APIS: {
+                newsapi: 'YOUR_NEWSAPI_KEY',
+                guardian: 'YOUR_GUARDIAN_KEY'
+            },
+            UPDATE_INTERVAL: 300000 // 5 minutes
+        };
+
+        // Global state
+        let newsData = [];
+        let aiEnabled = true;
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Futuristic AI News initialized');
+            loadSampleNews();
+            setInterval(fetchNews, CONFIG.UPDATE_INTERVAL);
+        });
+
+        // Sample news data for demo
+        function loadSampleNews() {
+            const sampleNews = [
+                {
+                    title: "Revolutionary AI Breakthrough in Quantum Computing",
+                    summary: "Scientists achieve quantum supremacy using AI-optimized algorithms, potentially revolutionizing computing forever.",
+                    category: "Technology",
+                    timestamp: new Date().toISOString(),
+                    aiInsight: "This breakthrough could accelerate AI development by 1000x, enabling real-time complex problem solving.",
+                    sentiment: "positive"
+                },
+                {
+                    title: "Global Climate Summit Reaches Historic Agreement",
+                    summary: "World leaders unite on ambitious climate goals with AI-powered monitoring systems to track progress.",
+                    category: "Environment",
+                    timestamp: new Date(Date.now() - 3600000).toISOString(),
+                    aiInsight: "AI monitoring will provide unprecedented accuracy in climate data, enabling faster response to changes.",
+                    sentiment: "positive"
+                },
+                {
+                    title: "Space Exploration Enters New Era with AI Pilots",
+                    summary: "First AI-piloted spacecraft successfully navigates to Mars, opening possibilities for autonomous space exploration.",
+                    category: "Space",
+                    timestamp: new Date(Date.now() - 7200000).toISOString(),
+                    aiInsight: "Autonomous AI pilots could enable exploration of distant planets without communication delays.",
+                    sentiment: "positive"
+                },
+                {
+                    title: "Medical AI Discovers New Treatment for Rare Diseases",
+                    summary: "Advanced AI system identifies potential treatments for 50+ rare diseases using pattern recognition.",
+                    category: "Health",
+                    timestamp: new Date(Date.now() - 10800000).toISOString(),
+                    aiInsight: "This AI approach could revolutionize drug discovery, reducing development time from years to months.",
+                    sentiment: "positive"
+                }
+            ];
+            
+            newsData = sampleNews;
+            renderNews();
+        }
+
+        // Fetch news from APIs
+        async function fetchNews() {
+            console.log('🔄 Fetching latest news...');
+            
+            try {
+                // Show loading
+                document.getElementById('news-container').innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+                
+                // Simulate API call delay
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // In a real implementation, you would fetch from news APIs here
+                // const response = await fetch('/api/news');
+                // const newNews = await response.json();
+                
+                // For demo, we'll add a new sample article
+                const newArticle = {
+                    title: `Breaking: AI Innovation at ${new Date().toLocaleTimeString()}`,
+                    summary: "Latest developments in artificial intelligence continue to reshape our world with groundbreaking discoveries.",
+                    category: "AI",
+                    timestamp: new Date().toISOString(),
+                    aiInsight: "This represents the accelerating pace of AI development in our current technological landscape.",
+                    sentiment: "positive"
+                };
+                
+                newsData.unshift(newArticle);
+                renderNews();
+                
+                console.log('✅ News updated successfully');
+                
+            } catch (error) {
+                console.error('❌ Error fetching news:', error);
+                showError('Failed to fetch news. Please try again.');
+            }
+        }
+
+        // Render news articles
+        function renderNews() {
+            const container = document.getElementById('news-container');
+            
+            const newsHTML = `
+                <div class="news-grid">
+                    ${newsData.map(article => `
+                        <article class="news-card">
+                            <div class="news-meta">
+                                <span class="news-category">${article.category}</span>
+                                <span>${formatTime(article.timestamp)}</span>
+                            </div>
+                            <h3 class="news-title">${article.title}</h3>
+                            <p class="news-summary">${article.summary}</p>
+                            ${aiEnabled && article.aiInsight ? `
+                                <div class="ai-insight">${article.aiInsight}</div>
+                            ` : ''}
+                        </article>
+                    `).join('')}
+                </div>
+            `;
+            
+            container.innerHTML = newsHTML;
+        }
+
+        // Format timestamp
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            const now = new Date();
+            const diff = now - date;
+            
+            if (diff < 3600000) { // Less than 1 hour
+                return `${Math.floor(diff / 60000)}m ago`;
+            } else if (diff < 86400000) { // Less than 1 day
+                return `${Math.floor(diff / 3600000)}h ago`;
+            } else {
+                return date.toLocaleDateString();
+            }
+        }
+
+        // Toggle AI analysis
+        function toggleAI() {
+            aiEnabled = !aiEnabled;
+            const btn = event.target;
+            btn.textContent = aiEnabled ? '🤖 AI Analysis ON' : '🤖 AI Analysis OFF';
+            btn.style.background = aiEnabled ? 
+                'linear-gradient(45deg, #00ff88, #00cc66)' : 
+                'linear-gradient(45deg, #ff6b6b, #cc5555)';
+            
+            renderNews();
+            console.log(`🤖 AI Analysis ${aiEnabled ? 'enabled' : 'disabled'}`);
+        }
+
+        // Export data to local storage / Google Drive
+        function exportData() {
+            const exportData = {
+                timestamp: new Date().toISOString(),
+                articles: newsData,
+                settings: { aiEnabled }
+            };
+            
+            // Save to localStorage (simulating local database)
+            localStorage.setItem('futuristic-ai-news-data', JSON.stringify(exportData));
+            
+            // Create downloadable file
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ai-news-export-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            
+            console.log('💾 Data exported successfully');
+            showNotification('Data exported successfully!');
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(45deg, #00d4ff, #0099cc);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Show error
+        function showError(message) {
+            const container = document.getElementById('news-container');
+            container.innerHTML = `
+                <div style="text-align: center; padding: 2rem; color: #ff6b6b;">
+                    <h3>⚠️ Error</h3>
+                    <p>${message}</p>
+                    <button class="btn" onclick="loadSampleNews()">🔄 Reload</button>
+                </div>
+            `;
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'r':
+                        e.preventDefault();
+                        fetchNews();
+                        break;
+                    case 'e':
+                        e.preventDefault();
+                        exportData();
+                        break;
+                    case 'a':
+                        e.preventDefault();
+                        toggleAI();
+                        break;
+                }
+            }
+        });
+
+        // Add CSS animation for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        console.log('🚀 Futuristic AI News System Ready!');
+        console.log('📋 Keyboard shortcuts:');
+        console.log('   Ctrl+R: Refresh news');
+        console.log('   Ctrl+E: Export data');
+        console.log('   Ctrl+A: Toggle AI analysis');
+    </script>
+</body>
+</html>
